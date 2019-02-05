@@ -47,4 +47,6 @@ Rails.application.configure do
 
   # Prevent expensive template finalization at end of test suite runs.
   config.action_view.finalize_compiled_template_methods = false
+  
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
 end
