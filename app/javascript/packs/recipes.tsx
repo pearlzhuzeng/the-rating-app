@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
+import { Router, Link, RouteComponentProps } from '@reach/router'
 import styled, { ThemeProvider } from '../typed/styled-components'
 import themes from '../styled/theme'
 import GlobalStyle from '../styled/GlobalStyle'
-import { Recipe } from '../types'
+
+import AllRecipes from '../components/AllRecipes'
+import Recipe from '../components/Recipe'
+import { IRecipe } from '../types'
+
+function NotFound(_: RouteComponentProps) {
+  return <h1>404 Not Found</h1>
+}
 
 function App() {
-  const [recipes, setRecipes] = useState<Recipe[]>([])
+  const [recipes, setRecipes] = useState<IRecipe[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchRecipes()
@@ -16,28 +25,25 @@ function App() {
     <ThemeProvider theme={themes.default}>
       <>
         <GlobalStyle />
-        <Box>
-          <h1>Recipes</h1>
-          <ul>
-            {recipes.map(recipe => (
-              <li key={recipe.param}>{recipe.title}</li>
-            ))}
-          </ul>
-        </Box>
+
+        {!loading && (
+          <Router>
+            <AllRecipes path="/" recipes={recipes} />
+            <Recipe path="recipes/:param" recipes={recipes} />
+            <NotFound path="*" />
+          </Router>
+        )}
       </>
     </ThemeProvider>
   )
 
   async function fetchRecipes() {
-    const response = await fetch('/recipes.json')
+    const response = await fetch('/api/recipes.json')
     const recipes = await response.json()
-    setRecipes(recipes as Recipe[])
+    setRecipes(recipes as IRecipe[])
+    setLoading(false)
   }
 }
-
-const Box = styled.main`
-  background-color: ${p => p.theme.primaryColor};
-`
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

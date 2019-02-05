@@ -1,4 +1,4 @@
-export type Recipe = {
+export interface IRecipe {
   param: string
   title: string
 }
