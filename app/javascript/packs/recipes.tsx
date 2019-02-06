@@ -7,11 +7,8 @@ import GlobalStyle from '../styled/GlobalStyle'
 
 import AllRecipes from '../components/AllRecipes'
 import Recipe from '../components/Recipe'
+import ErrorPage from '../components/ErrorPage'
 import { IRecipe } from '../types'
-
-function NotFound(_: RouteComponentProps) {
-  return <h1>404 Not Found</h1>
-}
 
 function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([])
@@ -30,7 +27,7 @@ function App() {
           <Router>
             <AllRecipes path="/" recipes={recipes} />
             <Recipe path="recipes/:param" recipes={recipes} />
-            <NotFound path="*" />
+            <ErrorPage path="*" />
           </Router>
         )}
       </>
