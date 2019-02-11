@@ -33,6 +33,21 @@ end
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   FactoryBot.find_definitions
+
+  config.before(:each, type: :system) do
+    driver = ENV['NOT_HEADLESS'] ? :selenium_chrome : :selenium_chrome_headless
+    driven_by driver
+  end
+
+  config.after(:each) do |example|
+    if defined?(page) && example.exception
+      Pry::ColorPrinter.pp(
+        page.driver.browser.manage.logs.get('browser'),
+        Rails.logger
+      )
+    end
+  end
+
   
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
