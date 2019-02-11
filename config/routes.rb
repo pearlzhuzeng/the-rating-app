@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   # expect 'api/' prefix to prevent conflict between rails/react routes
   scope :api do
     resources :recipes, only: %i[index show]
+    resources :reviews, only: %i[create]
   end
 
   get '*reach_router_location', to: 'home#show',

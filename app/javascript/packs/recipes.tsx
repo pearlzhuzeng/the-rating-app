@@ -26,8 +26,9 @@ function App() {
         {!loading && (
           <Router>
             <AllRecipes path="/" recipes={recipes} />
-            <Recipe path="recipes/:param" recipes={recipes} />
-            <ErrorPage path="*" />
+            <AllRecipes path="recipes" recipes={recipes} />
+            <Recipe path="recipes/:param/*" recipes={recipes} />
+            <ErrorPage default />
           </Router>
         )}
       </>
