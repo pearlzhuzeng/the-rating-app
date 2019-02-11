@@ -4,7 +4,7 @@
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "lib": ["es6", "dom"],
+    "lib": ["esnext", "dom"],
     "module": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
