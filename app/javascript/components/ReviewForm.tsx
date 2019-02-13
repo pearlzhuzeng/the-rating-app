@@ -69,7 +69,7 @@ export default function ReviewForm({ navigate, onCreate }: Props) {
   )
 
   async function postReview() {
-    const response = await fetch('/api/reviews.json', {
+    const response = await fetch(`/api/recipes/${recipeParam}/reviews.json`, {
       method: 'POST',
       body: JSON.stringify({ review }),
       headers: new Headers({
