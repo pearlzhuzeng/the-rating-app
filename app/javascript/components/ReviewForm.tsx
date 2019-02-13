@@ -5,10 +5,12 @@ import { IReview } from '../types'
 
 type Props = RouteComponentProps & {
   onCreate: (review: IReview) => any
+  recipeParam: string
 }
 
-export default function ReviewForm({ navigate, onCreate }: Props) {
+export default function ReviewForm({ navigate, onCreate, recipeParam }: Props) {
   const [review, setReview] = useState<Partial<IReview>>({
+    name: '',
     comment: '',
   })
 

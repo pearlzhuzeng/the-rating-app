@@ -28,7 +28,11 @@ export default function Recipe({ param, recipes }: Props) {
 
       <Router>
         <RecipeDetails path="/" />
-        <ReviewForm path="reviews/new" onCreate={appendReview} />
+        <ReviewForm
+          path="reviews/new"
+          onCreate={appendReview}
+          recipeParam={recipe.param}
+        />
       </Router>
     </div>
   )

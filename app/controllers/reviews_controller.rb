@@ -1,7 +1,10 @@
 class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    recipe = Recipe.find(params[:recipe_id])
+
+    @review = recipe.reviews.build(review_params)
+    @review.user = current_user
 
     if @review.save
       render json: @review, status: :created
