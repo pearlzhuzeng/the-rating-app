@@ -37,5 +37,13 @@ RSpec.describe Review, type: :model do
 
       expect(review.overall).to eq 3
     end
+
+    it 'works with floats' do
+      review = build_stubbed(
+        :review, taste: 5, appearance: 2, ease: 3, time: 2, cost: 1
+      )
+
+      expect(review.overall).to eq 2.6
+    end
   end
 end

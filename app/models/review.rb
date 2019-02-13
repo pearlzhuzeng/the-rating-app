@@ -13,6 +13,6 @@ class Review < ApplicationRecord
   end
 
   def overall
-    (taste + appearance + ease + time + cost) / 5
+    (taste + appearance + ease + time + cost) / 5.to_f
   end
 end
