@@ -1,8 +1,5 @@
 class ReviewSerializer < ApplicationSerializer
   attributes :taste, :appearance, :time, :ease, :cost, :comment
-  attribute :name
-
-  def name
-    object.user.name
-  end
+  attribute(:name) { object.username } # TODO: Delete this
+  attribute :username
 end
