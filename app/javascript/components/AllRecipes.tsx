@@ -15,6 +15,7 @@ export default function AllRecipes({ recipes }: Props) {
         {recipes.map(recipe => (
           <li key={recipe.param}>
             <Link to={`/recipes/${recipe.param}`}>{recipe.title}</Link>
+            <p>{recipe.detail}</p>
           </li>
         ))}
       </ul>

@@ -1,3 +1,3 @@
 class RecipeSerializer < ApplicationSerializer
-  attributes :title
+  attributes :title, :detail
 end

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, Router, RouteComponentProps, Redirect } from '@reach/router'
+import styled from '../typed/styled-components'
 
 import RecipeDetails from '../components/RecipeDetails'
 import ReviewForm from '../components/ReviewForm'
@@ -19,7 +20,9 @@ export default function Recipe({ param, recipes }: Props) {
 
   return (
     <div>
+      <BreadCrumbLink to="..">Back to All Recipes</BreadCrumbLink>
       <h1>{recipe.title}</h1>
+      <p>{recipe.detail}</p>
 
       <h2>Reviews</h2>
       {reviews.map(review => (
@@ -41,3 +44,8 @@ export default function Recipe({ param, recipes }: Props) {
     setReviews([...reviews, review])
   }
 }
+
+const BreadCrumbLink = styled(Link)`
+  font-size: 0.9em;
+  padding-bottom: 1em;
+`

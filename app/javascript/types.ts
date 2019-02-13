@@ -1,6 +1,7 @@
 export interface IRecipe {
   param: string
   title: string
+  detail: string
 }
 
 export interface IReview {
