@@ -5,4 +5,8 @@ class Review < ApplicationRecord
   def username
     user.name
   end
+
+  def overall
+    (taste + appearance + ease + time + cost) / 5
+  end
 end

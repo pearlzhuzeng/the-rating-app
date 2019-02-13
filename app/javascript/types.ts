@@ -2,6 +2,7 @@ export interface IRecipe {
   param: string
   title: string
   detail: string
+  averageScore: number
 }
 
 export interface IReview {

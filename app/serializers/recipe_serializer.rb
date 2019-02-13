@@ -1,3 +1,3 @@
 class RecipeSerializer < ApplicationSerializer
-  attributes :title, :detail
+  attributes :title, :detail, :average_score
 end

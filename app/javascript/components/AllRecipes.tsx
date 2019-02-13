@@ -12,12 +12,15 @@ export default function AllRecipes({ recipes }: Props) {
     <Box>
       <h1>Recipes</h1>
       <ul>
-        {recipes.map(recipe => (
-          <li key={recipe.param}>
-            <Link to={`/recipes/${recipe.param}`}>{recipe.title}</Link>
-            <p>{recipe.detail}</p>
-          </li>
-        ))}
+        {recipes
+          .sort((a: IRecipe, b: IRecipe) => b.averageScore - a.averageScore)
+          .map(recipe => (
+            <li key={recipe.param}>
+              <Link to={`/recipes/${recipe.param}`}>{recipe.title}</Link>
+              <p>Average Score: {recipe.averageScore.toFixed(2)}</p>
+              <p>{recipe.detail}</p>
+            </li>
+          ))}
       </ul>
     </Box>
   )
