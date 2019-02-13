@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :require_login, only: %i[create]
+
   def index
     recipe = Recipe.find(params[:recipe_id])
     @reviews = recipe.reviews
