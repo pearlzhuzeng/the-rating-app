@@ -49,4 +49,7 @@ Rails.application.configure do
   config.action_view.finalize_compiled_template_methods = false
   
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  config.middleware.use Clearance::BackDoor
+
 end
