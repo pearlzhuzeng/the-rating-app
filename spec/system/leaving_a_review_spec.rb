@@ -2,12 +2,15 @@ require 'rails_helper'
 
 RSpec.describe 'Leaving a review' do
   it 'is possible' do
+    user = create :user
     create :recipe, title: "A New Dish"
     
-    visit root_path
+    visit root_path(as: user)
     click_on 'A New Dish'
 
     click_on 'Rate This Recipe'
+
+    fill_in 'Your Name', with: 'Peppa Pig'
 
     within_fieldset "Taste" do
       choose 'Five Stars'
@@ -34,14 +37,12 @@ RSpec.describe 'Leaving a review' do
     click_button 'Submit'
 
     expect(page).to have_content 'Reviews'
+    expect(page).to have_content 'Peppa Pig'
     expect(page).to have_content 'Taste: Five Stars'
     expect(page).to have_content 'Appearance: Four Stars'
     expect(page).to have_content 'Ease: Three Stars'
     expect(page).to have_content 'Time: One Star'
     expect(page).to have_content 'Cost: Two Stars'
     expect(page).to have_content 'Great recipe but takes too long to cook!'
-
-    review = Review.order(:created_at).last
-    expect(review.comment).to eq('Great recipe but takes too long to cook!')
   end
 end
