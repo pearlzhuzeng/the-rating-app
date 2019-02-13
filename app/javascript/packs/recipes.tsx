@@ -10,6 +10,12 @@ import Recipe from '../components/Recipe'
 import ErrorPage from '../components/ErrorPage'
 import { IRecipe } from '../types'
 
+declare global {
+  interface Window {
+    signedIn: boolean
+  }
+}
+
 function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([])
   const [loading, setLoading] = useState(true)
