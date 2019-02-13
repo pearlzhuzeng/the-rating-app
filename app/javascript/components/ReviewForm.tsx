@@ -70,17 +70,17 @@ export default function ReviewForm({ navigate, onCreate }: Props) {
 
   async function postReview() {
     const response = await fetch(`/api/recipes/${recipeParam}/reviews.json`, {
+      credentials: 'same-origin',
       method: 'POST',
       body: JSON.stringify({ review }),
       headers: new Headers({
         'X-CSRF-Token': getMetaContent('csrf-token'),
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       }),
     })
 
-    const json = response.json()
-    console.log(json)
-    return json
+    return response.json()
   }
 }
 
