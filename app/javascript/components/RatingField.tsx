@@ -35,6 +35,7 @@ export default function RatingField({
             value={value}
             checked={selectedValue === value}
             onChange={() => onChange(value)}
+            required
           />
           <span>{valueLabel}</span>
         </label>
