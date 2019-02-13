@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   # expect 'api/' prefix to prevent conflict between rails/react routes
   scope :api do
     resources :recipes, only: %i[index show] do
-      resources :reviews, only: %i[create]
+      resources :reviews, only: %i[index create]
     end
   end
 

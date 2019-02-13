@@ -1,4 +1,10 @@
 class ReviewsController < ApplicationController
+  def index
+    recipe = Recipe.find(params[:recipe_id])
+    @reviews = recipe.reviews
+    render json: @reviews
+  end
+
   # POST /reviews.json
   def create
     recipe = Recipe.find(params[:recipe_id])

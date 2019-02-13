@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, Router, RouteComponentProps, Redirect } from '@reach/router'
 import styled from '../typed/styled-components'
 
@@ -15,6 +15,10 @@ type Props = RouteComponentProps<{ param: string }> & {
 export default function Recipe({ param, recipes }: Props) {
   const recipe = recipes.find(recipe => recipe.param === param)
   const [reviews, setReviews] = useState<IReview[]>([])
+
+  useEffect(() => {
+    fetchReviews()
+  }, [])
 
   if (recipe == null) return <Redirect to="404" />
 
@@ -42,6 +46,12 @@ export default function Recipe({ param, recipes }: Props) {
 
   function appendReview(review: IReview) {
     setReviews([...reviews, review])
+  }
+
+  async function fetchReviews() {
+    const response = await fetch(`/api/recipes/${param}/reviews.json`)
+    const reviews = await response.json()
+    setReviews(reviews as IReview[])
   }
 }
 
