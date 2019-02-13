@@ -27,7 +27,11 @@ function App() {
           <Router>
             <AllRecipes path="/" recipes={recipes} />
             <AllRecipes path="recipes" recipes={recipes} />
-            <Recipe path="recipes/:param/*" recipes={recipes} />
+            <Recipe
+              path="recipes/:param/*"
+              recipes={recipes}
+              onSubmitReview={fetchRecipes}
+            />
             <ErrorPage default />
           </Router>
         )}

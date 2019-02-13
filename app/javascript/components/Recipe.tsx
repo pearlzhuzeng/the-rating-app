@@ -10,9 +10,10 @@ import { IRecipe, IReview } from '../types'
 
 type Props = RouteComponentProps<{ param: string }> & {
   recipes: IRecipe[]
+  onSubmitReview: () => any
 }
 
-export default function Recipe({ param, recipes }: Props) {
+export default function Recipe({ param, recipes, onSubmitReview }: Props) {
   const recipe = recipes.find(recipe => recipe.param === param)
   const [reviews, setReviews] = useState<IReview[]>([])
 
@@ -46,6 +47,7 @@ export default function Recipe({ param, recipes }: Props) {
 
   function appendReview(review: IReview) {
     setReviews([...reviews, review])
+    onSubmitReview()
   }
 
   async function fetchReviews() {
