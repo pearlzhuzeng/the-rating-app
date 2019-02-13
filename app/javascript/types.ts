@@ -5,6 +5,7 @@ export interface IRecipe {
 
 export interface IReview {
   param: string
+  name: string
   taste: Rating
   appearance: Rating
   ease: Rating

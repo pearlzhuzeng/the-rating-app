@@ -12,6 +12,7 @@ export default function Review({ review }: Props) {
   debugger
   return (
     <div>
+      <p>Name: {review.name} </p>
       <p>Taste: {RatingValues.get(review.taste)} </p>
       <p>Appearance: {RatingValues.get(review.appearance)} </p>
       <p>Ease: {RatingValues.get(review.ease)} </p>
