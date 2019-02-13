@@ -10,7 +10,6 @@ type Props = RouteComponentProps & {
 
 export default function ReviewForm({ navigate, onCreate, recipeParam }: Props) {
   const [review, setReview] = useState<Partial<IReview>>({
-    name: '',
     comment: '',
   })
 
@@ -28,13 +27,6 @@ export default function ReviewForm({ navigate, onCreate, recipeParam }: Props) {
         <Link to="../../">Back to Recipe</Link>
       </nav>
       <form onSubmit={handleSubmit}>
-        <label>
-          Your Name:
-          <textarea
-            value={review.name}
-            onChange={e => setReview({ ...review, name: e.target.value })}
-          />
-        </label>
         <RatingField
           label="Taste"
           name="taste"

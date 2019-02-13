@@ -2,15 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Leaving a review' do
   it 'is possible' do
-    user = create :user
+    user = create :user, name: 'Peppa Pig'
     create :recipe, title: "A New Dish"
     
     visit root_path(as: user)
     click_on 'A New Dish'
 
     click_on 'Rate This Recipe'
-
-    fill_in 'Your Name', with: 'Peppa Pig'
 
     within_fieldset "Taste" do
       choose 'Five Stars'
