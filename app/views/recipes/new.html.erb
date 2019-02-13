@@ -1,0 +1,19 @@
+<%= form_with model: @recipe, local: true do |form| %>
+  <% if @recipe.errors.any? %>
+    <%= @article.errors.full_messages.to_sentence %>
+  <% end %>
+
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= form.label :detail %><br>
+    <%= form.text_area :detail %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
