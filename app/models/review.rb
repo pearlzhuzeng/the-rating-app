@@ -1,4 +1,6 @@
 class Review < ApplicationRecord
+  attribute :comment, :string, default: ''
+
   belongs_to :recipe
   belongs_to :user
 
