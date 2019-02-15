@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, Router, RouteComponentProps, Redirect } from '@reach/router'
 import styled from '../typed/styled-components'
 
-import RecipeDetails from '../components/RecipeDetails'
+import Reviews from './Reviews'
 import ReviewForm from '../components/ReviewForm'
-import Review from '../components/Review'
 
 import { IRecipe, IReview } from '../types'
 
@@ -26,21 +25,16 @@ export default function Recipe({ param, recipes, onSubmitReview }: Props) {
   return (
     <div>
       <BreadCrumbLink to="..">Back to All Recipes</BreadCrumbLink>
-      <h1>{recipe.title}</h1>
+      <Title>{recipe.title}</Title>
       <p>{recipe.detail}</p>
 
-      <h2>Reviews</h2>
-      {reviews.map(review => (
-        <Review review={review} />
-      ))}
-
       <Router>
-        <RecipeDetails path="/" />
         <ReviewForm
           path="reviews/new"
           onCreate={appendReview}
           recipeParam={recipe.param}
         />
+        <Reviews path="/" reviews={reviews} />
       </Router>
     </div>
   )
@@ -60,4 +54,8 @@ export default function Recipe({ param, recipes, onSubmitReview }: Props) {
 const BreadCrumbLink = styled(Link)`
   font-size: 0.9em;
   padding-bottom: 1em;
+`
+
+const Title = styled.h1`
+  font-family: 'Merriweather', serif;
 `
