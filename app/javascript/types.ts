@@ -1,8 +1,17 @@
-export interface IRecipe {
+export interface IRecipeSortingCriteria {
+  averageOverallScore: number
+  averageTasteScore: number
+  averageAppearanceScore: number
+  averageEaseScore: number
+  averageTimeScore: number
+  averageCostScore: number
+}
+
+export interface IRecipe extends IRecipeSortingCriteria {
   param: string
   title: string
   detail: string
-  averageScore: number
+  numberOfReviews: number
 }
 
 export interface IReview {
