@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An app intended for users to initiate ratings on anything.
 
-Things you may want to cover:
+The app currently allows users to submit reviews for recipes and sort recipes by their ratings.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Site live at: https://the-rating-app.herokuapp.com/
