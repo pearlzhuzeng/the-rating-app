@@ -1,6 +1,9 @@
 class Recipe < ApplicationRecord
+  attribute :detail, :string, default: ''
+
   has_many :reviews
 
+  validates :title, presence: true
 
   def average_overall_score
     return 0 if reviews.none?
