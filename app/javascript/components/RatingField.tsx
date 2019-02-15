@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import styled from '../typed/styled-components'
+import React from 'react'
+import styled, { css } from '../typed/styled-components'
 import { Rating } from '../types'
 
 type Props = {
@@ -24,46 +24,82 @@ export default function RatingField({
   onChange,
 }: Props) {
   return (
-    <Fieldset>
+    <Fieldset hasSelection={selectedValue != null}>
       <legend>{label}</legend>
 
-      {Array.from(RatingValues.entries(), ([value, valueLabel]) => (
-        <label>
-          <input
-            type="radio"
-            name={name}
-            value={value}
-            checked={selectedValue === value}
-            onChange={() => onChange(value)}
-            required
-          />
-          <span>{valueLabel}</span>
-        </label>
-      ))}
+      {Array.from(RatingValues.entries(), ([value, valueLabel]) => {
+        const id = `${name}-${value}`
+        return (
+          <>
+            <VisuallyHidden htmlFor={id}>{valueLabel}</VisuallyHidden>
+            <input
+              id={id}
+              type="radio"
+              name={name}
+              value={value}
+              checked={selectedValue === value}
+              onChange={() => onChange(value)}
+              required
+            />
+          </>
+        )
+      })}
     </Fieldset>
   )
 }
 
-const Fieldset = styled.fieldset`
-  label span {
-    position: absolute;
-    left: -999999px;
+const goldStar = css`
+  content: '★';
+  color: orange;
+  font-size: 2em;
+`
+
+const greyStar = css`
+  content: '★';
+  color: #928b81;
+  font-size: 2em;
+`
+
+const VisuallyHidden = styled.label`
+  position: absolute;
+  left: -999999px;
+`
+
+const Fieldset = styled.fieldset<{ hasSelection: boolean }>`
+  border-color: #ddd;
+  margin: 1.1em auto;
+  border-radius: 3px;
+
+  legend {
+    font-size: 1.2em;
   }
 
-  // input[type='radio'] {
-  //   -webkit-appearance: none;
-  // }
+  input[type='radio'] {
+    -webkit-appearance: none;
+  }
 
-  // input[type='radio']::after,
-  // input[type='radio']:hover ~ input[type='radio']::after,
-  // &:not(:hover) input[type='radio']:checked ~ input[type='radio']::after {
-  //   content: '☆';
-  //   color: black;
-  // }
+  /* Stars default to gold */
+  input::after {
+    ${goldStar}
+  }
 
-  // &:hover input[type='radio']::after,
-  // fieldset.has-checked input[type='radio']::after {
-  //   content: '★';
-  //   color: gold;
-  // }
+  /* Or grey if none are checked */
+  ${p =>
+    !p.hasSelection &&
+    css`
+      input::after {
+        ${greyStar}
+      }
+    `}
+
+  /* But always default to gold if the fieldset is hovered */
+  &:hover input::after {
+    ${goldStar}
+  }
+
+  /* And turn grey if it's after the hovered or checked star */
+  input:hover ~ input::after,
+  input:checked ~ input::after {
+    ${greyStar}
+  }
 `
