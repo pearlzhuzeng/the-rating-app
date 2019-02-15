@@ -41,6 +41,28 @@ function App() {
             <ErrorPage default />
           </Router>
         )}
+        <Footer>
+          <p>
+            <a
+              href="https://github.com/pearlzhuzeng/the-rating-app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Code on GitHub
+            </a>
+          </p>
+          <Signature>
+            Driven by a curious mind.
+            <br />
+            <a
+              href="https://pearlzhuzeng.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pearl Zhu Zeng
+            </a>
+          </Signature>
+        </Footer>
       </>
     </ThemeProvider>
   )
@@ -52,6 +74,16 @@ function App() {
     setLoading(false)
   }
 }
+
+const Footer = styled.footer`
+  margin: 3em auto;
+  display: flex;
+  justify-content: space-between;
+`
+
+const Signature = styled.p`
+  text-align: right;
+`
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
