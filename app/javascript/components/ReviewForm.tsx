@@ -1,6 +1,9 @@
 import React, { FormEvent, useState } from 'react'
 import { Link, RouteComponentProps } from '@reach/router'
+import styled from '../typed/styled-components'
+
 import RatingField from '../components/RatingField'
+
 import { IReview } from '../types'
 
 type Props = RouteComponentProps & {
@@ -22,10 +25,10 @@ export default function ReviewForm({ navigate, onCreate, recipeParam }: Props) {
   }
 
   return (
-    <>
-      <nav>
+    <Container>
+      <Nav>
         <Link to="../../">Back to Recipe</Link>
-      </nav>
+      </Nav>
       <form onSubmit={handleSubmit}>
         <RatingField
           label="Taste"
@@ -57,16 +60,18 @@ export default function ReviewForm({ navigate, onCreate, recipeParam }: Props) {
           value={review.cost}
           onChange={value => setReview({ ...review, cost: value })}
         />
-        <label>
+        <Comment>
           Comment:
-          <textarea
+          <Textarea
             value={review.comment}
             onChange={e => setReview({ ...review, comment: e.target.value })}
           />
-        </label>
-        <input type="submit" value="Submit" />
+        </Comment>
+        <SubmitButton>
+          <input type="submit" value="Submit" />
+        </SubmitButton>
       </form>
-    </>
+    </Container>
   )
 
   async function postReview() {
@@ -91,3 +96,43 @@ function getMetaContent(key: string): string {
   if (content) return content
   return ''
 }
+
+const Container = styled.div`
+  margin: 2em 0;
+`
+const Nav = styled.nav`
+  margin-bottom: 2em;
+`
+
+const SubmitButton = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  input {
+    padding: 0.3em 0.6em;
+    font-size: 1em;
+    background-color: #fffffe;
+    color: #555;
+    border-radius: 0.3em;
+
+    &:hover {
+      background-color: #136d88;
+      color: white;
+      transition: all 0.1s;
+    }
+  }
+`
+
+const Comment = styled.label`
+  font-size: 1.2em;
+  line-height: 200%;
+  margin-left: 0.8em;
+`
+
+const Textarea = styled.textarea`
+  width: 100%;
+  height: 10em;
+  font-size: 1.2em;
+  border-color: #ddd;
+  border-radius: 3px;
+`
