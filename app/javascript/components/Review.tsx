@@ -10,7 +10,6 @@ type Props = {
 }
 
 export default function Review({ review }: Props) {
-  debugger
   return (
     <Container>
       <ReviewContainer>
@@ -49,7 +48,7 @@ export default function Review({ review }: Props) {
         </RatingsContainer>
         <p>{review.comment} </p>
       </ReviewContainer>
-      <p>By: {review.name}</p>
+      <Reviewer>By: {review.name}</Reviewer>
     </Container>
   )
 }
@@ -74,11 +73,18 @@ const Container = styled.div`
   &:last-child {
     border-bottom: none;
   }
+
+  @media only screen and (max-width: 768px) {
+    display: block;
+  }
 `
 
 const ReviewContainer = styled.div`
-  flex-basis: 80%;
-  padding-right: 1em;
+  flex: 2;
+`
+
+const Reviewer = styled.p`
+  flex: 1;
 `
 
 const RatingsContainer = styled.dl`
