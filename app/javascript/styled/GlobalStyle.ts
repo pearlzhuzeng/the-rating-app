@@ -8,7 +8,7 @@ html {
   font-family: 'Lato', sans-serif;
   margin: 0 auto;
   margin-top: 2em;
-  max-width: 60em;
+  max-width: 65em;
 }
 
 a {

@@ -141,7 +141,7 @@ const Title = styled.h2`
 
 const ReviewsLink = styled.div`
   font-size: 0.8em;
-  text-align: center;
+  margin-top: 0.2em;
 `
 
 const Snippet = styled.p`
@@ -159,5 +159,6 @@ const Score = styled.p`
   span {
     font-size: 0.5em;
     text-transform: lowercase;
+    line-height: 0;
   }
 `
